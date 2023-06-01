@@ -1,0 +1,29 @@
+body {
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: #0070f3;
+}
+
+.description {
+  font-size: 1.25rem;
+  color: #666;
+}
+
+.link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #0070f3;
+  text-decoration: none;
+}
