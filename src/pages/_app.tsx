@@ -1,8 +1,10 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+// pages/_app.tsx
+import '../styles/globals.css';
+import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { Provider } from 'react-redux';
 import { store } from '../redux/store';
+import Header from '../components/Header';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -17,8 +19,10 @@ export default function App({ Component, pageProps }: AppProps) {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
+        <Header />
         <Component {...pageProps} />
       </Provider>
     </>
-  )
+  );
 }
+
