@@ -7,39 +7,27 @@ const Header = () => {
 
   return (
     <header className="header">
-      <div className="logo">
-        <img src="/logo.png" alt="Company Logo" />
+      <div className="nav-block">
+        <Link href="/about" passHref legacyBehavior>
+          <a>About</a>
+        </Link>
       </div>
-      <nav>
-        <ul className="header-links">
-          <li>
-            <Link href="/" passHref legacyBehavior>
-              <a>Home</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/about" passHref legacyBehavior>
-              <a>About</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/documentation" passHref legacyBehavior>
-              <a>Documentation</a>
-            </Link>
-          </li>
-        </ul>
-      </nav>
+      <div className="logo">
+        <img src="/best-cloud-company-logo.png" alt="Company Logo" className="logo-image" />
+      </div>
+      <div className="nav-block">
+        <Link href="/documentation" passHref legacyBehavior>
+          <a>Documentation</a>
+        </Link>
+      </div>
       <div className="header-buttons">
-        {!isAuthenticated ? (
+        {!isAuthenticated && (
           <>
-            <Link href="/signup" passHref legacyBehavior>
-              <a className="button">Signup</a>
-            </Link>
             <Link href="/login" passHref legacyBehavior>
               <a className="button">Login</a>
             </Link>
           </>
-        ) : null}
+        )}
       </div>
 
       <style jsx>{`
@@ -47,22 +35,21 @@ const Header = () => {
           background-color: blue;
           display: flex;
           align-items: center;
-          justify-content: space-between;
+          justify-content: center;
           padding: 1rem;
         }
 
-        .header-links {
+        .nav-block {
+          margin: 0 2rem; // Added horizontal margin to space the links
+        }
+
+        .logo {
           display: flex;
-          list-style: none;
-          padding: 0;
-          margin: 0;
+          justify-content: center;
+          align-items: center; // Centers the logo vertically
         }
 
-        .header-links li {
-          margin-right: 1rem;
-        }
-
-        .header-links a {
+        a {
           font-size: 1.2rem;
           color: white;
           text-decoration: none;
@@ -71,6 +58,8 @@ const Header = () => {
         .header-buttons {
           display: flex;
           align-items: center;
+          position: absolute;
+          right: 1rem;
         }
 
         .header-buttons a.button {
@@ -85,7 +74,7 @@ const Header = () => {
         }
 
         .logo img {
-          height: 50px;
+          height: 150px;
           width: auto;
         }
       `}</style>
