@@ -13,7 +13,11 @@ const Header = () => {
         </Link>
       </div>
       <div className="logo">
-        <img src="/best-cloud-company-logo.png" alt="Company Logo" className="logo-image" />
+        <Link href="/" passHref legacyBehavior>
+          <a>
+            <img src="/best-cloud-company-logo.png" alt="Company Logo" className="logo-image" />
+          </a>
+        </Link>
       </div>
       <div className="nav-block">
         <Link href="/documentation" passHref legacyBehavior>
