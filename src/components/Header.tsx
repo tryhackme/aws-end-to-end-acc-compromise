@@ -8,9 +8,16 @@ const Header = () => {
   return (
     <header className="header">
       <div className="nav-block">
-        <Link href="/about" passHref legacyBehavior>
-          <a>About</a>
-        </Link>
+        {isAuthenticated && (
+          <Link href="/about" passHref legacyBehavior>
+            <a>About Us</a>
+          </Link>
+        )}
+        {!isAuthenticated && (
+          <Link href="/playground" passHref legacyBehavior>
+            <a>Developer Playground</a>
+          </Link>
+        )}
       </div>
       <div className="logo">
         <Link href="/" passHref legacyBehavior>
@@ -24,15 +31,6 @@ const Header = () => {
           <a>Documentation</a>
         </Link>
       </div>
-      <div className="header-buttons">
-        {!isAuthenticated && (
-          <>
-            <Link href="/login" passHref legacyBehavior>
-              <a className="button">Login</a>
-            </Link>
-          </>
-        )}
-      </div>
 
       <style jsx>{`
         .header {
@@ -44,37 +42,19 @@ const Header = () => {
         }
 
         .nav-block {
-          margin: 0 2rem; // Added horizontal margin to space the links
+          margin: 0 2rem; 
         }
 
         .logo {
           display: flex;
           justify-content: center;
-          align-items: center; // Centers the logo vertically
+          align-items: center; 
         }
 
         a {
           font-size: 1.2rem;
           color: white;
           text-decoration: none;
-        }
-
-        .header-buttons {
-          display: flex;
-          align-items: center;
-          position: absolute;
-          right: 1rem;
-        }
-
-        .header-buttons a.button {
-          display: inline-block;
-          padding: 0.5rem 1rem;
-          background-color: white;
-          color: blue;
-          border: none;
-          border-radius: 4px;
-          text-decoration: none;
-          margin-left: 1rem;
         }
 
         .logo img {
