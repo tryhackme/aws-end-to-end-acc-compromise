@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { useState } from 'react';
 import Popup from '../components/Popup';
+import Table from '../components/Table'; 
 
 const Playground = () => {
   const isAuthenticated = useSelector((state: RootState) => state.usersSlice.isAuthenticated);
@@ -10,8 +11,8 @@ const Playground = () => {
 
   const ecrImages = [
     {
-      name: "MockImage",
-      description: "Mock description",
+      name: "ExampleImage:ExampleTag",
+      description: "Example Image Description",
       createdAt: "2023-06-01T00:00:00Z",
       sizeInBytes: 123456,
     },
@@ -20,24 +21,25 @@ const Playground = () => {
   const ecsTasks = [
     {
       taskArn: "arn:aws:ecs:us-east-1:123456789012:task/1d8779d0-9988-4e3a-9f85-1c9db8b793b7",
-      clusterArn: "arn:aws:ecs:us-east-1:123456789012:cluster/test",
-      taskDefinitionArn: "arn:aws:ecs:us-east-1:123456789012:task-definition/test:1",
+      clusterArn: "arn:aws:ecs:us-east-1:123456789012:cluster/{example-cluster}",
+      taskDefinitionArn: "arn:aws:ecs:us-east-1:123456789012:task-definition/{example-task-definition}:1",
       lastStatus: "RUNNING",
     },
   ];
 
-  const cellStyle = {
-    border: '1px solid black',
-    textAlign: 'center',
-    verticalAlign: 'middle',
-    padding: '0.5rem',
-  };
+  const ecrImagesColumns = [
+    { name: 'name', label: 'Name' },
+    { name: 'description', label: 'Description' },
+    { name: 'createdAt', label: 'Created At' },
+    { name: 'sizeInBytes', label: 'Size (bytes)' },
+  ];
 
-  const headerCellStyle = {
-    ...cellStyle,
-    backgroundColor: 'black',
-    color: 'white',
-  };
+  const ecsTasksColumns = [
+    { name: 'taskArn', label: 'Task ARN' },
+    { name: 'clusterArn', label: 'Cluster ARN' },
+    { name: 'taskDefinitionArn', label: 'Task Definition ARN' },
+    { name: 'lastStatus', label: 'Last Status' },
+  ];
 
   const headingStyle = {
     color: 'blue',
@@ -96,48 +98,10 @@ const Playground = () => {
       </div>
 
       <h2 style={headingStyle}>ECR Images</h2>
-      <table style={{ width: '100%', marginBottom: '1rem', borderCollapse: 'collapse' }}>
-        <thead>
-          <tr>
-            <th style={headerCellStyle}>Name</th>
-            <th style={headerCellStyle}>Description</th>
-            <th style={headerCellStyle}>Created At</th>
-            <th style={headerCellStyle}>Size (bytes)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {ecrImages.map((image) => (
-            <tr key={image.name}>
-              <td style={cellStyle}>{image.name}</td>
-              <td style={cellStyle}>{image.description}</td>
-              <td style={cellStyle}>{image.createdAt}</td>
-              <td style={cellStyle}>{image.sizeInBytes}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <Table data={ecrImages} columns={ecrImagesColumns} />
 
       <h2 style={headingStyle}>ECS Tasks</h2>
-      <table style={{ width: '100%', marginBottom: '1rem', borderCollapse: 'collapse' }}>
-        <thead>
-          <tr>
-            <th style={headerCellStyle}>Task ARN</th>
-            <th style={headerCellStyle}>Cluster ARN</th>
-            <th style={headerCellStyle}>Task Definition ARN</th>
-            <th style={headerCellStyle}>Last Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {ecsTasks.map((task) => (
-            <tr key={task.taskArn}>
-              <td style={cellStyle}>{task.taskArn}</td>
-              <td style={cellStyle}>{task.clusterArn}</td>
-              <td style={cellStyle}>{task.taskDefinitionArn}</td>
-              <td style={cellStyle}>{task.lastStatus}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <Table data={ecsTasks} columns={ecsTasksColumns} />
     </div>
   );
 };

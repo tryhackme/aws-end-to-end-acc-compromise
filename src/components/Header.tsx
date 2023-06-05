@@ -6,43 +6,48 @@ const Header = () => {
   const isAuthenticated = useSelector((state: RootState) => state.usersSlice.isAuthenticated);
 
   return (
-    <header className="header">
-      <div className="nav-block">
-        {isAuthenticated && (
-          <Link href="/about" passHref legacyBehavior>
-            <a>About Us</a>
+    <>
+      <header className="header">
+        <div className="nav-block">
+          {isAuthenticated && (
+            <Link href="/about" passHref legacyBehavior>
+              <a>About Us</a>
+            </Link>
+          )}
+          {!isAuthenticated && (
+            <Link href="/playground" passHref legacyBehavior>
+              <a>Developer Playground</a>
+            </Link>
+          )}
+        </div>
+        <div className="logo">
+          <Link href="/" passHref legacyBehavior>
+            <a>
+              <img src="/best-cloud-company-logo.png" alt="Company Logo" className="logo-image" />
+            </a>
           </Link>
-        )}
-        {!isAuthenticated && (
-          <Link href="/playground" passHref legacyBehavior>
-            <a>Developer Playground</a>
+        </div>
+        <div className="nav-block">
+          <Link href="/documentation" passHref legacyBehavior>
+            <a>Documentation</a>
           </Link>
-        )}
-      </div>
-      <div className="logo">
-        <Link href="/" passHref legacyBehavior>
-          <a>
-            <img src="/best-cloud-company-logo.png" alt="Company Logo" className="logo-image" />
-          </a>
-        </Link>
-      </div>
-      <div className="nav-block">
-        <Link href="/documentation" passHref legacyBehavior>
-          <a>Documentation</a>
-        </Link>
-      </div>
+        </div>
+      </header>
 
       <style jsx>{`
         .header {
           background-color: blue;
           display: flex;
+          justify-content: space-between;
           align-items: center;
-          justify-content: center;
           padding: 1rem;
+          width: 100%;
         }
 
         .nav-block {
-          margin: 0 2rem; 
+          flex: 1;
+          display: flex;
+          justify-content: center;
         }
 
         .logo {
@@ -62,7 +67,14 @@ const Header = () => {
           width: auto;
         }
       `}</style>
-    </header>
+
+      <style jsx global>{`
+        body {
+          margin: 0;
+          padding: 0;
+        }
+      `}</style>
+    </>
   );
 };
 

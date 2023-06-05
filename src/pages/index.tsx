@@ -40,8 +40,7 @@ const HomePage: NextPage<HomePageProps> = ({ userPoolId, userPoolClientId }) => 
         }
 
         .login-button {
-          display: flex;
-          justify-content: center;
+          text-align: center;
           margin-top: 2rem;
         }
 
