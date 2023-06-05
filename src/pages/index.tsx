@@ -32,6 +32,7 @@ const HomePage: NextPage<HomePageProps> = ({ userPoolId, userPoolClientId }) => 
         .title {
           font-size: 2rem;
           margin-top: 3rem;
+          color: blue;
         }
 
         .description {
